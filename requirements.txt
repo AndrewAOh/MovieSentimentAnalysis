@@ -6,4 +6,5 @@ pandas
 openpyxl
 huggingface_hub
 graphviz
-st-star-rating
+streamlit-extras
+
