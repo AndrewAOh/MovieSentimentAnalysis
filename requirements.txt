@@ -1,0 +1,9 @@
+# Requirements needed for streamlit app demo
+streamlit
+transformers
+torch
+pandas
+openpyxl
+huggingface_hub
+graphviz
+streamlit_star_rating
