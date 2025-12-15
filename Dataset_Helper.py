@@ -7,7 +7,7 @@ from transformers import pipeline
 # File Paths
 MOVIE_RANKING_FP = "Dataset/Top250_MovieSentiment_Sorted.csv"
 TOP_250_MOVIES_FP = "Dataset/IMDB_Top250_Movies.csv"
-MOVIE_REVIEWS_FP = "Dataset/IMDB_MovieReviews.csv"
+# MOVIE_REVIEWS_FP = "Dataset/IMDB_MovieReviews.csv"
 
 
 @st.cache_data
@@ -21,10 +21,10 @@ def load_imdb_movie_ranking_dataset():
     imdb_movie_ranking_dataset = clean_movie_titles(imdb_movie_ranking_dataset)
     return clean_movie_descriptions(imdb_movie_ranking_dataset)
 
-@st.cache_data
-def load_movie_reviews_dataset():
-    movie_reviews_dataset = pd.read_csv(MOVIE_REVIEWS_FP)
-    return clean_movie_titles(movie_reviews_dataset)
+# @st.cache_data
+# def load_movie_reviews_dataset():
+#     movie_reviews_dataset = pd.read_csv(MOVIE_REVIEWS_FP)
+#     return clean_movie_titles(movie_reviews_dataset)
 
 def clean_movie_titles(df):
     df = df.copy()
