@@ -50,7 +50,7 @@ MODEL = load_model()
 # Load Datasets
 MOVIE_SENTIMENT_RANKING_DS = load_movie_sentiment_ranking_dataset()
 IMDB_MOVIE_RANKS_DS = load_imdb_movie_ranking_dataset()
-IMDB_MOVIE_REVIEWS_DS = load_movie_reviews_dataset()
+# IMDB_MOVIE_REVIEWS_DS = load_movie_reviews_dataset()
 SENTIMENT_RANKING_DS = create_sentiment_ranking_dataset(MOVIE_SENTIMENT_RANKING_DS, IMDB_MOVIE_RANKS_DS)
 
 
