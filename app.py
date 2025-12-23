@@ -227,7 +227,7 @@ with movie_ranking_tab1:
         # Subheader Columns
         header_col1, header_col2, header_col3, header_col4, header_col5 = st.columns([1, 1, 2, 3, 3])
         with header_col1:
-            st.markdown("<div style='font-size:22px; font-weight:600;'>CineScore Rank</div>", unsafe_allow_html=True)
+            st.markdown("<div style='font-size:22px; font-weight:600;'>Rank</div>", unsafe_allow_html=True)
         with header_col2:
             st.markdown("<div style='font-size:22px; font-weight:600;'>Poster</div>", unsafe_allow_html=True)
         with header_col3:
@@ -268,7 +268,7 @@ with movie_ranking_tab1:
                     """,
                     unsafe_allow_html=True
                 )
-                st.markdown(f"**Sentiment Score:** {row['CineScore']:.1f}")
+                st.markdown(f"**CineScore Score:** {row['CineScore']:.1f}")
                 st.markdown(f"**Reviews Analyzed:** {row['# Reviews']:,}")
             # 4)Extra metadata
             with col4:

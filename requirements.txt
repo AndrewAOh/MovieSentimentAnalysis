@@ -7,4 +7,4 @@ openpyxl
 huggingface_hub
 graphviz
 streamlit-extras
-
+st-star-rating
