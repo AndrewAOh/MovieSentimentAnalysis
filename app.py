@@ -30,7 +30,7 @@ from Dataset_Helper import (
 
 
 
-st.set_page_config(page_title="Movie Review Sentiment Demo", layout="wide")
+st.set_page_config(page_title="Movie Review CineScore Demo", layout="wide")
 
 # --- Session State Initialization ---
 if "page" not in st.session_state:
@@ -38,7 +38,7 @@ if "page" not in st.session_state:
 
 
 
-st.title("Analyzing the True Sentiment of Movie Reviews")
+st.title("CineScore: Analyzing the True Sentiment of Movie Reviews")
 
 movie_ranking_tab1, sentiment_model_tab2, project_background_tab3 = st.tabs(["📊 Movie Rankings", "🧠 Model Inference", "📋 Project Background"])
 
@@ -60,7 +60,7 @@ SENTIMENT_RANKING_DS = create_sentiment_ranking_dataset(MOVIE_SENTIMENT_RANKING_
 with movie_ranking_tab1:
     # Header for Ranking Section
     st.markdown(
-        "<div style='font-size:28px; font-weight:600; margin-bottom:1rem;'>🎬 Top 250 Movie Sentiment Rankings</div>",
+        "<div style='font-size:28px; font-weight:600; margin-bottom:1rem;'>🎬 Top 250 Movie CineScore Rankings</div>",
         unsafe_allow_html=True
     )
 
@@ -80,7 +80,7 @@ with movie_ranking_tab1:
 
         # Minimum sentiment score
         min_sentiment = st.slider(
-            "Minimum Sentiment Score",
+            "Minimum CineScore",
             min_value=0.0,
             max_value=100.0,
             value=50.0,
@@ -127,7 +127,7 @@ with movie_ranking_tab1:
         sort_by = st.selectbox(
             "Sort by",
             [
-                "Sentiment Model Rank",
+                "CineScore Rank",
                 "IMDb Rank"
             ]
         )
@@ -156,7 +156,7 @@ with movie_ranking_tab1:
 
     # Minimum sentiment
     FILTERED_SENTIMENT_RANKING_DS = FILTERED_SENTIMENT_RANKING_DS[
-        FILTERED_SENTIMENT_RANKING_DS["Sentiment Model Score"] >= min_sentiment
+        FILTERED_SENTIMENT_RANKING_DS["CineScore"] >= min_sentiment
     ]
 
     # Minimum IMDb
@@ -227,7 +227,7 @@ with movie_ranking_tab1:
         # Subheader Columns
         header_col1, header_col2, header_col3, header_col4, header_col5 = st.columns([1, 1, 2, 3, 3])
         with header_col1:
-            st.markdown("<div style='font-size:22px; font-weight:600;'>Rank</div>", unsafe_allow_html=True)
+            st.markdown("<div style='font-size:22px; font-weight:600;'>CineScore Rank</div>", unsafe_allow_html=True)
         with header_col2:
             st.markdown("<div style='font-size:22px; font-weight:600;'>Poster</div>", unsafe_allow_html=True)
         with header_col3:
@@ -244,7 +244,7 @@ with movie_ranking_tab1:
             # 1)Sentiment Model Rank
             with col1:
                 st.markdown(
-                    f"<div style='font-size:20px; font-weight:600;'>{row['Sentiment Model Rank']}</div>",
+                    f"<div style='font-size:20px; font-weight:600;'>{row['CineScore Rank']}</div>",
                     unsafe_allow_html=True
                 )
             # 2)Movie Poster
@@ -268,7 +268,7 @@ with movie_ranking_tab1:
                     """,
                     unsafe_allow_html=True
                 )
-                st.markdown(f"**Sentiment Score:** {row['Sentiment Model Score']:.1f}")
+                st.markdown(f"**Sentiment Score:** {row['CineScore']:.1f}")
                 st.markdown(f"**Reviews Analyzed:** {row['# Reviews']:,}")
             # 4)Extra metadata
             with col4:
@@ -325,7 +325,7 @@ with movie_ranking_tab1:
 # TAB FOR SENTIMENT MODEL
 # -----------------------
 with sentiment_model_tab2:
-    st.header("Run the Sentiment Model")
+    st.header("Run the CineScore Sentiment Model")
 
     # Ask user to give movie review
     review_text = st.text_area(
@@ -347,14 +347,14 @@ with sentiment_model_tab2:
 
     
     # Run the sentiment model
-    if st.button("Run Model"):
+    if st.button("Run CineScore Model"):
         st.divider()
         if review_text.strip():
             with st.spinner("Running model..."):
                 results = MODEL(review_text)[0]
                 sentiment_score = calc_review_sentiment_score(results)
             
-            st.subheader("Model Sentiment Analysis")
+            st.subheader("CineScore Sentiment Analysis")
             col1, col2 = st.columns([1, 1])
 
             # Big score
@@ -403,7 +403,7 @@ with sentiment_model_tab2:
             # ----------------------------
             # Breakdown section
             # ----------------------------
-            st.markdown("### Sentiment Score Breakdown")
+            st.markdown("### CineScore Sentiment Score Breakdown")
 
 
             label_map = {
@@ -429,7 +429,7 @@ with sentiment_model_tab2:
 # TAB FOR PROJECT BACKGROUND 
 # --------------------------
 with project_background_tab3:
-    st.header("Project Background")
+    st.header("CineScore Project Background")
 
     # ---- Goal ----
     st.markdown("### Goal")
@@ -439,7 +439,7 @@ with project_background_tab3:
         eliminating reliance on numerical rating values. Numerical ratings are inherently subjective. Users 
         interpret scales differently, and identical scores may represent vastly different opinions from person to person.
 
-        By analyzing sentiment directly from written reviews, this project produces a more **objective and 
+        By analyzing sentiment directly from written reviews, CineScore produces a more **objective and 
         interpretable ranking** grounded in natural language rather than explicit numeric input.
         """
     )
@@ -470,7 +470,7 @@ with project_background_tab3:
         Each review is processed by the model to generate a **probability distribution over ordered sentiment 
         classes**. These probabilities are converted into a **continuous sentiment score**, enabling fine-grained 
         comparison across reviews. Review-level scores are then aggregated at the movie level to compute a final 
-        **sentiment-based ranking**.
+        **CineScore**.
         """
     )
 
@@ -508,7 +508,7 @@ with project_background_tab3:
     dot.node("C", "RoBERTa-Large\nFine-Tuned Sentiment Model")
     dot.node("D", "Class Probabilities\n→ Continuous Score")
     dot.node("E", "Movie-Level\nScore Aggregation")
-    dot.node("F", "Final Sentiment-Based\nMovie Rankings")
+    dot.node("F", "Final CineScore\nMovie Rankings")
 
     dot.edges([
         ("A", "B"),
